@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="org.spring.springboot.dao.JobsDao">
+
+
+    <resultMap id="BaseResultMap" type="org.spring.springboot.domain.Job">
+        <result column="id_" property="id_" />
+
+        <result column="age" property="age" />
+        <result column="recruitId" property="recruitId" />
+        <result column="updateTime" property="updateTime" />
+        <result column="job_id" property="job_id" />
+        <result column="createTime" property="createTime" />
+        <result column="welfare" property="welfare" />
+        <result column="type" property="type" />
+        <result column="startdate" property="startdate" />
+        <result column="source" property="source" />
+        <result column="sex" property="sex" />
+        <result column="salary" property="salary" />
+        <result column="ori_experience" property="ori_experience" />
+        <result column="ori_size" property="ori_size" />
+        <result column="ori_employertype" property="ori_employertype" />
+        <result column="officialname" property="officialname" />
+        <result column="number" property="number" />
+        <result column="name" property="name" />
+        <result column="location" property="location" />
+        <result column="city" property="city" />
+        <result column="companyaddress" property="companyaddress" />
+        <result column="depart" property="depart" />
+        <result column="description" property="description" />
+        <result column="education" property="education" />
+        <result column="email" property="email" />
+        <result column="employerurl" property="employerurl" />
+        <result column="enddate" property="enddate" />
+        <result column="industry" property="industry" />
+
+    </resultMap>
+    <parameterMap type="java.util.Map" id="searchMap" >
+        <parameter property="name" />
+        <parameter property="countNum"/>
+    </parameterMap>
+    <select id="findAllJobs" parameterType="java.lang.Long" resultMap="BaseResultMap" >
+        select *
+        from recruit_data_hu where startdate='2017-11-11' limit 0,#{countNum}
+    </select>
+    <select id="findOneJob" parameterType="java.lang.String" resultMap="BaseResultMap">
+           select *
+        from recruit_data_hu where id_=#{id_}
+    </select>
+    <select id="findJobByName" parameterMap="searchMap" resultMap="BaseResultMap">
+        select *
+        from recruit_data_hu where name LIKE #{name} limit 0,#{countNum}
+    </select>
+
+
+
+</mapper>
